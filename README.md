@@ -10,10 +10,14 @@
 
   ex) functionName : 소문자로 시작
 
+<br>
+
 ## 변수
 
 - var : 읽기, 쓰기 가능
 - val : 처음 선언에서만 값을 할당
+
+<br>
 
 ## 자료형
 
@@ -21,6 +25,8 @@
   - `var a :Int? = null`
   - 코틀린은 null point exception을 막기 위해 원천적으로 값이 할당되지 않는 상황을 차단
   - 따라서 값을 할당하지 않을 때는 **nullable**변수로 선언해주어야 함
+
+<br>
 
 #### 자료형 체크
 
@@ -32,6 +38,8 @@ a is Int // true
 a is Char // false
 ```
 
+<br>
+
 ## 형변환
 
 코틀린은 오류를 막기위해 **명시적형변환**만이 가능
@@ -39,6 +47,8 @@ a is Char // false
 - toInt()
 - toFloat()
 - toChar()
+
+<br>
 
 ## 배열
 
@@ -48,6 +58,8 @@ a is Char // false
   - `var arr = arrayOf(1,2,3,4,5)`
 - 비어있는 배열
   - `var arr = arrayOfNulls<Int>(5)`
+
+<br>
 
 ## 함수
 
@@ -64,6 +76,8 @@ fun add(a:Int, b:Int) : Int {
 ```kotlin
 fun add(a:Int, b:Int) = a + b
 ```
+
+<br>
 
 ## for문
 
