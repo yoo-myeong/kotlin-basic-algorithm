@@ -120,3 +120,158 @@ fun add(a:Int, b:Int) = a + b
       }
   }
   ```
+
+<br>
+
+# 클래스
+
+### 생성
+
+```kotlin
+class Person (var name:String, val birthYear:Int) {
+  init {
+      println("안녕하세요.")
+  }  
+  
+  constructor(name: String) : this(name, 1997) {
+      println("안녕하세요.")
+  }
+  
+  fun introduce() {
+        println("${birthYear}년생 ${name}입니다")
+    }
+}
+```
+
+- `init`
+  - 기본생성자
+- `constructor`
+  - 보조생성자
+  - 항상 기본생성자를 호출해줘야 함
+  - `this`를 사용해서 호출
+
+### 상속
+
+```kotlin
+open class Animal(var name:String, var age:Int, var type:String) {
+    fun introduce() {
+        println("저는 ${type} ${name}이고, ${age}살 입니다.")
+    }
+}
+
+class Dog (name:String, age: Int) : Animal(name, age, "개") {
+    fun bark(){
+        println("멍멍!")
+    }
+}
+```
+
+- `open`을 사용하여 상속할 수 있는 클래스 생성
+- 수퍼클래스와 서브클래스는 같은이름의 속성을 가질 수 없음
+- 서브클래스를 생성할 때는 반드시 수퍼클래스의 생성자를 호출해야 함
+
+### 오버라이딩
+
+```kotlin
+open class Animal(var name:String, var age:Int, var type:String) {
+    fun introduce() {
+        println("저는 ${type} ${name}이고, ${age}살 입니다.")
+    }
+}
+
+class Dog (name:String, age: Int) : Animal(name, age, "개") {
+    override fun introduce(){
+        println("멍멍!")
+    }
+}
+```
+
+- `open`클래스의 함수는 `override`를 통해 재구현할 수 있음
+
+### 추상화
+
+```kotlin
+abstract class Animal {
+  abstract fun eat()
+  fun sniff() {
+    println("킁킁")
+  }
+}
+
+class Rabbit : Animal() {
+  override fun eat() {
+    println("당근을 먹습니다.")
+  }
+}
+```
+
+- 추상클래스는 자체적으로는 인스턴스를 만들수 없는 클래스
+- 추상함수는 구현부가 없는 함수
+- 추상함수를 구현하려면 서브클래스가 `override`해야함
+
+### 인터페이스
+
+```kotlin
+interface Runner {
+    fun run()
+}
+
+interface Eater {
+    fun eat() {
+        println("음식을 먹습니다.")
+    }
+}
+
+class Dog : Runner, Eater {
+    override fun run(){
+        println("우다다다 뜁니다.")
+    }
+  
+  override fun eat() {
+      println("허겁지겁 먹습니다.")
+  }
+}
+```
+
+- 코틀린의 인터페이스는 속성, 추상함수, 일반함수를 모두 가질 수 있다.
+- 추상함수는 생성자가 있지만, 인터페이스는 생성자를 가질 수 없음
+- 자동 간주
+  - 구현부가 있으면 `open`함수
+  - 구현부가 없으면 `abstract`함
+
+<br>
+
+# 프로젝트
+
+- 기능단위로 **모듈**을 분리
+  - 라이브러리 모듈 등
+  - .kt뿐 아니라 여러가지 폴더와 파일로 구성됨
+  - 물리적인 구조를 담당
+- 소스코드의 소속을 지정하는 **패키지**
+  - 논리적인 구조를 담당
+  - 코드파일 위에 `package {package name}`을 기입해서 소스코드를 패키지로 분리
+  - 패키지를 명시하지 않으면 자동으로 `default`패키지로 묶임
+  - 같은 패키지 안에서는 변수, 함수, 클래스를 공유할 수 있음
+  - 패키지가 다를 경우 `import`를 통해 불러올 수 음
+
+<br>
+
+# 접근제한자
+
+- 패키지 스코프
+  + `public` : 어떤 패키지에서도 접근 가능
+  + `internal` : 같은 모듈내에서만 접근 가능
+  + `private` : 같은 파일내에서만 접근 가능
+- 클래스 스코프
+  + `public` : 클래스 외부에서 항상 접근 가능
+  + `private` : 클래스 내부에서만 접근 가능
+  + `protected` : 자신과 서브클래스에서만 접근 가능
+
+<br>
+
+
+
+
+
+
+
