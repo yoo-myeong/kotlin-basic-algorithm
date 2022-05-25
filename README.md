@@ -269,6 +269,80 @@ class Dog : Runner, Eater {
 
 <br>
 
+# 고차함수
+
+함수를 클래스에서 만든 **인스턴스처럼** 취급하는 방법.
+함수를 인자로 넘겨주거나, 결과값으로 반환받을 수 있는 방법.
+
+```kotlin
+fun main(){
+    b(::a)
+}
+
+fun a (str: String) {
+    println("고차함수입니다.")
+}
+
+fun b (f : (String) -> Unit) {
+    f()
+}
+```
+
+- 고차함수로 넘길 땐 함수앞에 콜론을 두개 붙여줌
+- 인자로 넘길 함수를 굳이 이름까지 붙여 만들 필요가 없는 경우라면 **람다함수**로 지정
+
+### 람다함수
+
+- 기본 사용법
+
+```kotlin
+fun main(){
+  val c : (String) -> Unit = { str -> println("람다합수입니다")}
+  // val c : (String) -> Unit = { str :String -> println("람다합수입니다")}
+  // 과 같지만 자료형을 지정해줬기 때문에 str은 타입추론이 되어 생략해도 됨
+  // 또는 반대로 함수 자료형을 기술하지 않고
+  // val c = { str : String -> println("람다함수입니다.")}
+  // 로 작성할 수도 있음
+  b(::c)
+}
+
+fun b (f : (String) -> Unit) {
+  f()
+}
+```
+
+- 여러 구문으로 사용
+```kotlin
+val c : (Int, Int) -> Int = { a, b ->
+  var sum = a + b
+  return sum * 2 
+}
+```
+
+- 파라미터가 없는 경우
+```kotlin
+val a : ()->Unit = {println("파라미터 없음")}
+```
+
+- 파라미터가 하나인 경우
+```kotlin
+val a: (String)->String = { return  "받은 파리미터는 $it 입니다"}
+```
+
+<br>
+
+# 스코프함수
+
+- `apply`
+  - 인스턴스를 생성한 후 변수에 담기 전 초기화과정을 수행할 때
+  - `인스턴스.apply(){}` 스코프안에서는 참조연산자 `.`을 사용할 필요 없이 바로 속성에 접근 가능
+- `run`
+- `with`
+- `also`
+- `let`
+
+
+
 
 
 
